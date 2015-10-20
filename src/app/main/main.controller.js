@@ -3,10 +3,16 @@
 
   angular
     .module('com.rtroncoso.todoapp.main')
-    .controller('MainController', ['$scope', 'TodoService',
-      function MainController($scope, TodoService) {
+    .controller('MainController', ['$scope', '$log', 'TodoService', 'toastr',
+      function MainController($scope, $log, TodoService, toastr) {
 
-        $scope.todos = TodoService.all();
+        TodoService.get(null, function(err, data) {
+          if(err) {
+            toastr.error('Error' + err.message);
+          }
+
+          $scope.todos = data;
+        });
         $scope.textTodo = '';
 
         $scope.submit = function() {
