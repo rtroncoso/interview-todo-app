@@ -6,12 +6,7 @@
     .config(routerConfig);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider,
-                        $locationProvider) {
-    if(window.history && window.history.pushState) {
-      $locationProvider.html5Mode(true);
-    }
-
+  function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
         url: '/home',

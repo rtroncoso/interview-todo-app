@@ -6,7 +6,14 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig) {
+  function config($logProvider, toastrConfig,
+                  $locationProvider, $windowProvider) {
+    // Enable html5 mode
+    var $window = $windowProvider.$get();
+    if($window.history && $window.history.pushState) {
+      $locationProvider.html5Mode(true);
+    }
+
     // Enable log
     $logProvider.debugEnabled(true);
 
