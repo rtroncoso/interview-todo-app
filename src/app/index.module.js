@@ -5,6 +5,7 @@
     .module('com.rtroncoso.todoapp',
     ['ngAnimate', 'ngCookies', 'ngSanitize',
       'ngAria', 'ui.router', 'ui.bootstrap',
-      'toastr', 'ngStorage']);
+      'toastr', 'ngStorage',
+      'com.rtroncoso.todoapp.main']);
 
 })();

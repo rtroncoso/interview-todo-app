@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('com.rtroncoso.todoapp')
+    .module('com.rtroncoso.todoapp.main')
     .config(routerConfig);
 
   /** @ngInject */
