@@ -3,11 +3,16 @@
 
   angular
     .module('com.rtroncoso.todoapp.main')
-    .controller('MainController', MainController);
+    .controller('MainController', ['$scope', 'TodoService',
+      function MainController($scope, TodoService) {
 
-  /** @ngInject */
-  function MainController() {
+        $scope.todos = TodoService.all();
+        $scope.textTodo = '';
 
-  }
+        $scope.submit = function() {
+          alert('form submitted! :D');
+        };
+
+    }]);
 
 })();
