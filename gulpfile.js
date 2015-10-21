@@ -27,3 +27,14 @@ wrench.readdirSyncRecursive('./gulp').filter(function(file) {
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
+
+/**
+ * Serve to production task
+ */
+gulp.task('serveprod', function() {
+  connect.server({
+    root: ['dist'],
+    port: process.env.PORT || 5000, // localhost:5000
+    livereload: false
+  });
+});
