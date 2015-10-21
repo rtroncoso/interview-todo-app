@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
-          <li><a ui-sref="about">About</a></li>
+          <li ui-sref-active="active"><a ui-sref="about">About</a></li>
         </ul>
       </div>
     </div>
@@ -26,7 +26,8 @@
                  ng-model="textTodo"
                  ng-enter="submit()"
                  class="form-control"
-                 placeholder="Task Description...">
+                 placeholder="Task Description..."
+                 auto-focus>
           <span class="input-group-btn">
             <button class="btn btn-default btn-lg"
                     ng-click="submit()"

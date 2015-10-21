@@ -17,7 +17,6 @@
        *
        * @type {*[]|*}
        */
-      $localStorage.$reset();
       $localStorage.counter = $localStorage.counter || 1;
       $localStorage.todos = $localStorage.todos || {
         0: {

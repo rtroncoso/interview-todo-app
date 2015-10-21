@@ -55,7 +55,7 @@
               return toastr.error('Error: ' + err.message);
             }
 
-            toastr.success('To-Do with id: ' + todo.id + ' successfully completed!');
+            toastr.success('To-Do with id: ' + todo.id + ' successfully restored!');
           })
         };
 
