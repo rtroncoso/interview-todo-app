@@ -1,6 +1,14 @@
 .todo-list {
   text-align: left;
 
+  .todo-completed {
+    background-color: $alert-success-bg;
+
+    &:hover {
+      background-color: $alert-success-bg !important;
+    }
+  }
+
   .list-group-item {
     height: 55px;
 
@@ -12,7 +20,6 @@
     .todo-description {
       line-height: 35px;
       float: left;
-      font-weight: bold;
     }
 
     .todo-actions {

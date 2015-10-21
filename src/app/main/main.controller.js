@@ -16,7 +16,11 @@
         $scope.textTodo = '';
 
         $scope.submit = function() {
-          alert('form submitted! :D');
+          if(!$scope.textTodo) {
+            return toastr.info('Cannot submit an empty to-do!');
+          }
+
+          TodoService.insert($scope.textTodo);
         };
 
     }]);
