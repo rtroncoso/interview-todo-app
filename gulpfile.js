@@ -32,7 +32,7 @@ gulp.task('default', ['clean'], function () {
 /**
  * Serve to production task
  */
-gulp.task('serveprod', function() {
+gulp.task('serveprod', ['build'], function() {
   connect.server({
     root: ['dist'],
     port: process.env.PORT || 5000, // localhost:5000
