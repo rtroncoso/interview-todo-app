@@ -1,6 +1,7 @@
 .todo-list {
   text-align: left;
 
+
   .todo-completed {
     background-color: $alert-success-bg;
 
@@ -10,20 +11,17 @@
   }
 
   .list-group-item {
-    height: 55px;
+
+    .todo-description {
+      line-height: inherit;
+      @media (min-width: $screen-sm-min) {
+        line-height: 35px;
+      }
+    }
 
     &:hover {
       cursor: pointer;
       background-color: $dropdown-link-hover-bg;
-    }
-
-    .todo-description {
-      line-height: 35px;
-      float: left;
-    }
-
-    .todo-actions {
-      float: right;
     }
   }
 }

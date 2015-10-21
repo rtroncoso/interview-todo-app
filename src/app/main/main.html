@@ -40,23 +40,29 @@
     <hr/>
 
     <ul class="list-group todo-list">
-      <li class="list-group-item"
+      <li class="list-group-item row"
           ng-repeat="todo in todos"
           ng-if="!todo.deletedAt"
           ng-class="{'todo-completed': todo.completedAt}"
         >
         <div class="todo-description">
-          <strong>{{ todo.description }}</strong> |
-          <span class="todo-creation-date">Created <span am-time-ago="todo.createdAt"></span></span>
-          <span
-            class="todo-completion-date"
-            ng-if="todo.completedAt"
+          <div class="col-xs-4"><strong>{{ todo.description }}</strong></div>
+          <div class="col-xs-4"><span
+            class="todo-creation-date"
             >
-            | Finished <span am-time-ago="todo.completedAt"></span>
+            Created <span am-time-ago="todo.createdAt"></span>
+          </span></div>
+        </div>
+
+        <div class="col-xs-4 text-right"><span
+          class="todo-completion-date"
+          ng-if="todo.completedAt"
+          >
+            Finished <span am-time-ago="todo.completedAt"></span>
           </span>
         </div>
 
-        <div class="todo-actions">
+        <div class="todo-actions text-right col-xs-4 pull-right">
           <a class="btn btn-warning"
              ng-if="todo.completedAt"
              ng-click="restore(todo)"
