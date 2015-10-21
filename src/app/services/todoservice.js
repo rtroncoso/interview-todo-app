@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+
   angular
     .module('com.rtroncoso.todoapp.services')
 
@@ -16,31 +17,26 @@
        *
        * @type {*[]|*}
        */
-      $localStorage.todos = $localStorage.todos || [
-          {
-            id: 0,
-            description: 'Example To-Do #1!',
-            createdAt: Date.now(),
-            completedAt: null,
-            deleteadAt: null
-          }
-        ];
+      $localStorage.$reset();
+      $localStorage.counter = $localStorage.counter || 1;
+      $localStorage.todos = $localStorage.todos || {
+        0: {
+          id: 0,
+          description: 'Example To-Do #1!',
+          createdAt: Date.now(),
+          completedAt: null,
+          deletedAt: null
+        }
+      };
 
       /**
        * Obtains all the available todos in local storage
-       * checks for the type of the stored to-do's to be
-       * an array and throws an error via the callback if
-       * none was found
        *
        * @param query
        * @param cb
        * @returns {*}
        */
       var get = function(query, cb) {
-        if(!Array.isArray($localStorage.todos)) {
-          return cb(new Error('Array storage should not be empty'), []);
-        }
-
         return cb(null, $localStorage.todos);
       };
 
@@ -56,15 +52,16 @@
        */
       var insert = function(description, cb) {
         var todo = {
-          id: $localStorage.todos.length + 1,
+          id: $localStorage.counter,
           description: description,
           createdAt: Date.now(),
           completedAt: null,
           deletedAt: null
         };
 
-        $localStorage.todos.push(todo);
-       return cb(null, todo);
+        $localStorage.todos[$localStorage.counter] = todo;
+        $localStorage.counter++;
+        return cb(null, todo);
       };
 
       /**
@@ -75,18 +72,38 @@
        * @returns {*}
        */
       var remove = function(id, cb) {
-        if($localStorage.todos[id] == undefined) {
+        var todo = $localStorage.todos[id];
+        if(todo == undefined) {
           return cb(new Error('Index not found in array.'));
         }
 
-        delete $localStorage.todos[id];
-        return cb();
+        todo.deletedAt = Date.now();
+        return cb(null, todo);
       };
+
+      /**
+       * Toggles a to-do completed status from completed to
+       * not completed (depending on previous state)
+       *
+       * @param id
+       * @param cb
+       * @returns {*}
+       */
+      var toggle = function(id, cb) {
+        var todo = $localStorage.todos[id];
+        if(todo == undefined) {
+          return cb(new Error('Index not found in array.'));
+        }
+
+        todo.completedAt = todo.completedAt ? null : Date.now();
+        return cb(null, todo);
+      }
 
       return {
         get: get,
         insert: insert,
-        remove: remove
+        remove: remove,
+        toggle: toggle
       };
 
     }]);
